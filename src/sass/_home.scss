@@ -1,0 +1,58 @@
+.centerAll {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+}
+
+.settings {
+    padding: 0 2rem;
+    
+    .form-label {
+        color: $color_03;
+    }
+}
+input[type=text] {
+    background: $color_01;
+    color: $color_03 !important;
+    border: 1px solid $color_03;
+
+    &:focus {
+        background: $color_01;
+        outline: none;
+    }
+}
+input[type=range] {
+    color: $color_03 !important;
+    border-color: $color_03 !important;
+
+    &::-webkit-slider-thumb {
+        width: 16px;
+        height: 36px;
+        border-radius: 8px;
+        background: $color_02;
+        border: 1px solid $color_03;
+    }
+    &::-moz-range-thumb {
+        width: 16px;
+        height: 36px;
+        border-radius: 8px;
+        background: $color_02;
+        border: 1px solid $color_03;
+      }
+
+    &::-webkit-slider-runnable-track {
+        background: $color_01;
+        
+        &:focus {
+            background: $color_03;
+        }
+    }
+
+    &::-moz-range-track {
+        background: $color_01;
+    }
+
+    &:focus {
+        background: $color_01;
+    }
+}

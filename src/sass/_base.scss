@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,600;1,200&display=swap');
 
-$bgColor: #513252;
-$color_01: #7A4069;
-$color_02: #CA4E79;
-$color_03: #FFC18E;
+$bgColor: rgb(81, 50, 82);
+$color_01: rgb(122, 64, 105);
+$color_02: rgb(202, 78, 121);
+$color_03: rgb(255, 193, 142);
 
 * { margin: 0; padding: 0; font-family: "Nunito"; box-sizing: border-box; }
 h1 { color: $color_03; font-weight: 500 !important;}
-h2 { color: $color_02; }
+h2 { color: $color_03; text-align: center; font-weight: 600; font-size: 2rem;}
+p { color: $color_02; font-size: 1.4rem; }
 ul { list-style-type: none; }
 a {
     color: unset;

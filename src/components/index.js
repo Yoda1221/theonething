@@ -1,2 +1,6 @@
 export { default as Home }      from "./Home"
 export { default as Layout }    from "./Layout"
+export { default as Pomodoro }  from "./Pomodoro"
+export { default as Settings }  from "./Settings"
+export { default as SettingsBtn }   from "./SettingsBtn"
+export { default as CustomButton }  from "./CustomButton"

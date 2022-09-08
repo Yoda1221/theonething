@@ -1,8 +1,8 @@
-import React from 'react'
+import { Pomodoro } from './'
 
 const Home = () => (
-    <div className="container mt-5">
-        <h1>The One Thing!</h1>
+    <div className="container centerAll">
+        <Pomodoro />
     </div>
 )
 
