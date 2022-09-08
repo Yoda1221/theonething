@@ -1,11 +1,14 @@
 import { CustomButton }     from './'
 import { MODE }             from '../config'
 import { useNavigate }      from "react-router-dom"
+import alertSound           from '../assets/alert.mp3'
 import SettingsContext      from "../context/SettingContext"
+import { ToastContainer, toast }        from 'react-toastify'
+import { FiPauseCircle, FiPlayCircle }  from 'react-icons/fi'
 import { useContext, useEffect, useRef, useState }  from 'react'
 import { CircularProgressbar, buildStyles }         from 'react-circular-progressbar'
-import { FiPauseCircle, FiPlayCircle }  from 'react-icons/fi'
 
+import 'react-toastify/dist/ReactToastify.css'
 import 'react-circular-progressbar/dist/styles.css'
 
 const Pomodoro = () => {
@@ -15,18 +18,33 @@ const Pomodoro = () => {
   const [isPlay, setIsPlay]   = useState(false)
   const [mode, setMode]       = useState(MODE.focus) //* focus, relax, null
   const [fullTime, setFullTime] = useState(context.focusMinutes * 60) 
+  const audioPlayer           = useRef(null)
   const modeRef               = useRef(mode)
   const isPlayRef             = useRef(isPlay)
   const minLeftRef            = useRef(minLeft)
-  
-  const addZero = (n) => { return (parseInt(n, 10) < 10 ? '0' : '') + n }
-  const countDown = () => {
+
+  const playAudio = ()  => { audioPlayer.current.play() }
+  const addZero   = (n) => { return (parseInt(n, 10) < 10 ? '0' : '') + n }
+  const notify = () =>  {
+    toast.info('The relax time is begin', { 
+      autoClose: 5000,
+      draggable: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      hideProgressBar: false,
+      className: 'black-background',
+      progressClassName: 'fancy-progress-bar'
+    })
+  }
+
+  const countDown = ()  => {
     minLeftRef.current--
     setminLeft(minLeftRef.current)
   }
   const setPomodoro = () => {
     minLeftRef.current = context.focusMinutes * 60
     setminLeft(minLeftRef.current)
+    notify()
   }
   const changeMode = () => {
     const nextMode = modeRef.current === MODE.focus ? MODE.relax : MODE.focus
@@ -45,6 +63,9 @@ const Pomodoro = () => {
       ? context.focusMinutes * 60
       : context.relaxMinutes * 60
     )
+    notify()
+    playAudio()
+
   }
   
   const percentage  = Math.round((minLeft / fullTime) * 100)
@@ -139,6 +160,19 @@ const Pomodoro = () => {
           handleClick={() => navigate('settings') }
         />
       </div>
+      <audio ref={audioPlayer} src={alertSound} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+        theme='rgb(122, 64, 105)'
+      />
     </div>
   )
 }
