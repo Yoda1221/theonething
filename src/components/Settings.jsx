@@ -67,7 +67,6 @@ const Settings = (props) => {
               handleClick={() => navigate('/') }
             />
         </div>
-
         <div className="col-xs-6">
           <CustomButton 
             type="button" 
@@ -82,9 +81,7 @@ const Settings = (props) => {
             handleClick={handleClick}
           />
         </div>
-        
       </div>
-
     </div>
   )
 }

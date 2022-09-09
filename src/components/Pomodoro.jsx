@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'react-circular-progressbar/dist/styles.css'
 
 const Pomodoro = () => {
-  const navigate  = useNavigate()
+  const navigate              = useNavigate()
   const context               = useContext(SettingsContext)
   const [minLeft, setminLeft] = useState(0)
   const [isPlay, setIsPlay]   = useState(false)
@@ -25,7 +25,7 @@ const Pomodoro = () => {
 
   const playAudio = ()  => { audioPlayer.current.play() }
   const addZero   = (n) => { return (parseInt(n, 10) < 10 ? '0' : '') + n }
-  const notify = () =>  {
+  const notify    = ()  => {
     toast.info('The relax time is begin', { 
       autoClose: 5000,
       draggable: true,
@@ -36,15 +36,13 @@ const Pomodoro = () => {
       progressClassName: 'fancy-progress-bar'
     })
   }
-
-  const countDown = ()  => {
+  const countDown = () => {
     minLeftRef.current--
     setminLeft(minLeftRef.current)
   }
   const setPomodoro = () => {
     minLeftRef.current = context.focusMinutes * 60
     setminLeft(minLeftRef.current)
-    notify()
   }
   const changeMode = () => {
     const nextMode = modeRef.current === MODE.focus ? MODE.relax : MODE.focus
@@ -63,14 +61,16 @@ const Pomodoro = () => {
       ? context.focusMinutes * 60
       : context.relaxMinutes * 60
     )
-    notify()
-    playAudio()
 
+    if (modeRef.current === MODE.relax) notify()
+
+    playAudio()
   }
   
   const percentage  = Math.round((minLeft / fullTime) * 100)
   const min         = addZero(Math.floor(minLeft / 60))
   let sec           = addZero(minLeft % 60)
+  const color       = percentage < 11 ? 'rgba(255, 193, 142, 1)' : mode === MODE.focus ? 'rgba(158, 56, 128, 1)' : 'rgba(202, 78, 121,1)'
 
   useEffect(() => {
     setPomodoro()
@@ -94,14 +94,19 @@ const Pomodoro = () => {
         styles={buildStyles({
           strokeLinecap: 'round',
           textSize: '16px',
-          pathColor: mode === MODE.focus ? 'rgba(122, 64, 1051,1)' : 'rgba(202, 78, 121,1)' ,
+          pathColor: color,
           tailColor: '#FFC18E',
           textColor: '#CA4E79',
           trailColor: '#7A4069',
           backgroundColor: '#FFC18E',
         })} 
       />
-      <p className='text-center mt-3'>{ modeRef.current === MODE.focus ? 'Focus' : 'Relax' }</p>
+      <p className='text-center mt-3'>
+        { modeRef.current === MODE.focus 
+          ? MODE.focus.charAt(0).toUpperCase() + MODE.focus.slice(1)
+          : MODE.relax.charAt(0).toUpperCase() + MODE.relax.slice(1) 
+        } time
+      </p>
       <div className="mt-3 d-flex justify-content-center">
         {isPlay 
           ? <CustomButton 
@@ -122,7 +127,7 @@ const Pomodoro = () => {
               handleClick={() => {
                 setIsPlay(false)
                 isPlayRef.current = false
-              } }
+              }}
             /> 
           : <CustomButton 
               type="button" 
@@ -142,7 +147,7 @@ const Pomodoro = () => {
               handleClick={() => {
                 setIsPlay(true)
                 isPlayRef.current = true
-              } }
+              }}
             />
         }
       </div>
@@ -157,7 +162,7 @@ const Pomodoro = () => {
             border: '1px solid rgb(122, 64, 105)',
             color:'rgb(255, 193, 142)'
           }}
-          handleClick={() => navigate('settings') }
+          handleClick={() => navigate('settings')}
         />
       </div>
       <audio ref={audioPlayer} src={alertSound} />

@@ -11,17 +11,17 @@ function App() {
 
   return (
     <>
-    <SettingsContext.Provider value={{
-      focusMinutes, relaxMinutes, focusSentence,
-      setFocusMinutes, setRelaxMinutes, setFocusSentence
-    }} >
-      <Routes>
-          <Route path='/' element={ <Layout />} >
-            <Route index element={ <Home />} />
-            <Route path='settings' element={ <Settings />} />
-          </Route>
-      </Routes>
-    </SettingsContext.Provider>
+      <SettingsContext.Provider value={{
+        focusMinutes, relaxMinutes, focusSentence,
+        setFocusMinutes, setRelaxMinutes, setFocusSentence
+      }} >
+        <Routes>
+            <Route path='/' element={ <Layout />} >
+              <Route index element={ <Home />} />
+              <Route path='settings' element={ <Settings />} />
+            </Route>
+        </Routes>
+      </SettingsContext.Provider>
     </>
   )
 }
