@@ -6,7 +6,7 @@ Az applikáció segít abban, hogy a megfelelő időt tudj tölteni a számodra 
 ### Telepítési útmutató
 - Lébj be abba a mappába, ahova le akarod tölteni a programot
 - Töltd le az appllikációt az alábbi linkről
-- https://github.com/Yoda1221/theonething.git
+- https://github.com/Yoda1221/theonething.git (feature/feature_003.git)
 - Lépj be a "theonething" mappába
 - Futtasd az "npm i" parancsot a terminálban
 - Végül futtast az "npm start" parancssort a terminálból
@@ -27,7 +27,7 @@ The application helps you to spend the right amount of time on things that are i
 ### Installation Guide
 - Go to the folder where you want to download the program
 - Download the application from the link below
-- https://github.com/Yoda1221/theonething.git
+- https://github.com/Yoda1221/theonething.git (feature/feature_003.git)
 - Enter the "theonething" folder
 - Run the "npm i" command in the terminal
 - Finally, run the command line "npm start" from the terminal
